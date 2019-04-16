@@ -1,0 +1,13 @@
+//
+//  MutiUpload.pch
+//  MultiUpload
+//
+//  Created by zrq on 2019/4/15.
+//  Copyright © 2019年 com.baidu.www. All rights reserved.
+//
+
+#ifndef MutiUpload_pch
+#define MutiUpload_pch
+#define kSCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define kSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#endif /* MutiUpload_pch */
