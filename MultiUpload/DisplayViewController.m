@@ -8,12 +8,23 @@
 
 #import "DisplayViewController.h"
 
-@interface DisplayViewController ()
-
+@interface DisplayViewController ()<UIScrollViewDelegate>{
+   
+}
+@property(nonatomic,strong)UIScrollView *scrollView;
 @end
 
 @implementation DisplayViewController
+- (UIScrollView *)scrollView{
 
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT)];
+        _scrollView.backgroundColor = UIColor.whiteColor;
+        _scrollView.delegate = self;
+        [self.view addSubview:_scrollView];
+    }
+    return _scrollView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -21,9 +32,21 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     
-    UIImageView *imgeV = [[UIImageView alloc] initWithImage:self.photoArr[self.lookTag]];
-    imgeV.frame = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT);
-    [self.view addSubview:imgeV];
+    self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * (self.photoArr.count - 1) , kSCREEN_HEIGHT);
+    
+    for (int i = 0; i < self.photoArr.count - 1; i++) {
+        UIImageView *imgeV = [[UIImageView alloc] initWithImage:self.photoArr[i]];
+        imgeV.userInteractionEnabled = YES;
+        imgeV.contentMode = UIViewContentModeScaleAspectFit;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
+        [imgeV addGestureRecognizer:tap];
+        imgeV.frame = CGRectMake(i * kSCREEN_WIDTH, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT);
+         [self.scrollView addSubview:imgeV];
+    }
+    
+    
+    [self.scrollView scrollRectToVisible:CGRectMake(self.lookTag*kSCREEN_WIDTH, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT) animated:NO];
+    self.scrollView.pagingEnabled = YES;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 
@@ -34,6 +57,13 @@
     [self.view addSubview:btn];
     
     [btn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+   NSInteger index = scrollView.contentOffset.x / kSCREEN_WIDTH;
+    
+    NSLog(@"--------%d-----------%ld",(int)scrollView.contentOffset.x,(long)index);
+
 }
 - (void)close{
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -38,9 +38,9 @@
     subview.backgroundColor = [UIColor whiteColor];
     [self addSubview:subview];
     NSArray *dataSource = @[ @{ @"name" : @"相册",
-                                @"image" : @"alumn" },
+                                @"image" : @"identity.jpg" },
                              @{ @"name" : @"相机",
-                                @"image" : @"photo" } ];
+                                @"image" : @"identity.jpg" } ];
     for (int i = 0; i < dataSource.count; i++) {
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(15 + i * kSCREEN_WIDTH / 2, 10, kSCREEN_WIDTH / 2 - 30, 30)];
         imageV.image = [UIImage imageNamed:dataSource[i][@"image"]];
