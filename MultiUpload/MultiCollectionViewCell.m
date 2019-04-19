@@ -17,8 +17,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.yellowColor;
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH / 2 - 30, 84)];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH / 2 - 30, 150)];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         [self addSubview:self.imageView];
         

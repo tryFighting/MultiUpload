@@ -55,15 +55,15 @@
     [self.scrollView scrollRectToVisible:CGRectMake(self.lookTag*kSCREEN_WIDTH, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT) animated:NO];
     self.scrollView.pagingEnabled = YES;
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-
-    btn.frame = CGRectMake(kSCREEN_WIDTH - 50, 60, 30, 30);
-    
-    [btn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    
-    [self.view addSubview:btn];
-    
-    [btn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//
+//    btn.frame = CGRectMake(kSCREEN_WIDTH - 50, 60, 30, 30);
+//    
+//    [btn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+//    
+//    [self.view addSubview:btn];
+//    
+//    [btn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     
     
     //添加分页功能

@@ -64,7 +64,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger numberRows = [self.collectDataSource[indexPath.section] count] % 2 > 0 ? ([self.collectDataSource[indexPath.section] count] / 2 + 1) : [self.collectDataSource[indexPath.section] count] / 2;
-    return numberRows * (84 + 20) + 40 ;
+    return numberRows * (150 + 20) + 40 ;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *multiCell = @"MultipCellTableViewCell";

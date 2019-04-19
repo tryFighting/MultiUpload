@@ -29,7 +29,7 @@
     }
     //self.imageArr = [NSMutableArray arrayWithArray:arr];
     NSInteger numberRows = self.imageArr.count % 2 > 0 ? (self.imageArr.count / 2 + 1) : self.imageArr.count / 2;
-    NSString *rowString = [NSString stringWithFormat:@"%zd", numberRows * (84 + 20) + 40 + 20];
+    NSString *rowString = [NSString stringWithFormat:@"%zd", numberRows * (150 + 20) + 40 + 20];
     
     CGFloat footerHeight = 0;
   
@@ -134,7 +134,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 #pragma mark----设置每个单元格的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((kSCREEN_WIDTH-60 - 40) / 2, 84);
+    return CGSizeMake((kSCREEN_WIDTH-60 - 40) / 2, 150);
 }
 #pragma mark---通过调整inset使单元格顶部和底部都有间距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
