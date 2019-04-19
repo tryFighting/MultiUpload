@@ -45,6 +45,8 @@
     
     self.title = @"上传";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    ///样式1，2，3限定传 2张 3张  4张
     [self.collectDataSource addObject:[NSMutableArray arrayWithObject:[UIImage imageNamed:@"identity.jpg"]]];
     [self.collectDataSource addObject:[NSMutableArray arrayWithObject:[UIImage imageNamed:@"identity.jpg"]]];
     [self.collectDataSource addObject:[NSMutableArray arrayWithObject:[UIImage imageNamed:@"identity.jpg"]]];
@@ -68,15 +70,19 @@
     static NSString *multiCell = @"MultipCellTableViewCell";
     MultipCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:multiCell forIndexPath:indexPath];
     ///刷新
-    [cell reloadCollectionView:self.collectDataSource[indexPath.section]];
+    [cell reloadCollectionView:self.collectDataSource section:indexPath.section];
     //[cell reloadCollectionView:[self.collectionDic objectForKey:[NSString stringWithFormat:@"%ld",(long)indexPath.section]]];
     cell.photoClick = ^(NSInteger tag, NSInteger addRow) {
 
         if (tag == 100) {
             [self showCanEdit:NO andIndex:1 photo:^(UIImage *photo) {
                 //相册
+                
                 NSMutableArray *photoArr = self.collectDataSource[indexPath.section];
                 [photoArr insertObject:photo atIndex:photoArr.count - 1];
+                if (photoArr.count == indexPath.section + 2) {
+                    [photoArr removeObjectAtIndex:photoArr.count - 1];
+                }
                 [self.tableView reloadData];
             }];
         }else{
@@ -84,6 +90,9 @@
                 //相机
                 NSMutableArray *photoArr = self.collectDataSource[indexPath.section];
                 [photoArr insertObject:photo atIndex:photoArr.count - 1];
+                if (photoArr.count == indexPath.section + 2) {
+                    [photoArr removeObjectAtIndex:photoArr.count - 1];
+                }
                 [self.tableView reloadData];
             }];
         }
@@ -92,11 +101,22 @@
     cell.removeBlock = ^(NSMutableArray *imageArr, NSInteger deleteRow) {
         NSMutableArray *photoArr = self.collectDataSource[indexPath.section];
         [photoArr removeObjectAtIndex:deleteRow];
+        // 0---1  1--2  2-3
+        if ([photoArr containsObject:[UIImage imageNamed:@"identity.jpg"]]) {
+            
+        }else{
+            [photoArr addObject:[UIImage imageNamed:@"identity.jpg"]];
+        }
         [self.tableView reloadData];
     };
     cell.lookBlock = ^(NSMutableArray *imageArr, NSInteger lookRow) {
         
         DisplayViewController *dispaly = [DisplayViewController new];
+        if ([imageArr containsObject:[UIImage imageNamed:@"identity.jpg"]]) {
+            dispaly.isHave = YES;
+        }else{
+            dispaly.isHave = NO;
+        }
         dispaly.photoArr = imageArr;
         dispaly.lookTag = lookRow;
         [self presentViewController:dispaly animated:YES completion:nil];

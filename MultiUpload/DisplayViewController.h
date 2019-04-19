@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DisplayViewController : UIViewController
 @property(nonatomic,strong)NSMutableArray *photoArr;
 @property(nonatomic,assign)NSInteger lookTag;
+@property(nonatomic,assign)BOOL isHave;
 @end
 
 NS_ASSUME_NONNULL_END

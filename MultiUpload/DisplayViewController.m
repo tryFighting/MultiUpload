@@ -9,7 +9,7 @@
 #import "DisplayViewController.h"
 
 @interface DisplayViewController ()<UIScrollViewDelegate>{
-   
+    UIPageControl *pageControl ;
 }
 @property(nonatomic,strong)UIScrollView *scrollView;
 @end
@@ -21,6 +21,8 @@
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT)];
         _scrollView.backgroundColor = UIColor.whiteColor;
         _scrollView.delegate = self;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
         [self.view addSubview:_scrollView];
     }
     return _scrollView;
@@ -31,10 +33,15 @@
     self.title = @"查看图片";
     
     self.view.backgroundColor = UIColor.whiteColor;
+    NSInteger count;
+    if (self.isHave) {
+        count = self.photoArr.count - 1;
+    }else{
+         count = self.photoArr.count;
+    }
+    self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * count, kSCREEN_HEIGHT);
     
-    self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * (self.photoArr.count - 1) , kSCREEN_HEIGHT);
-    
-    for (int i = 0; i < self.photoArr.count - 1; i++) {
+    for (int i = 0; i < count; i++) {
         UIImageView *imgeV = [[UIImageView alloc] initWithImage:self.photoArr[i]];
         imgeV.userInteractionEnabled = YES;
         imgeV.contentMode = UIViewContentModeScaleAspectFit;
@@ -57,12 +64,23 @@
     [self.view addSubview:btn];
     
     [btn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    //添加分页功能
+    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kSCREEN_HEIGHT - 60, kSCREEN_WIDTH, 30)];
+    pageControl.numberOfPages = count;
+    pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    //pageControl.center = CGPointMake(kSCREEN_WIDTH/2, kSCREEN_HEIGHT - 100);
+    pageControl.currentPage = self.lookTag;
+    pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+    [self.view addSubview:pageControl];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
    NSInteger index = scrollView.contentOffset.x / kSCREEN_WIDTH;
     
-    NSLog(@"--------%d-----------%ld",(int)scrollView.contentOffset.x,(long)index);
+   ///设置几页翻转情况
+    pageControl.currentPage = index;
 
 }
 - (void)close{

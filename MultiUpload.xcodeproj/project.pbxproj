@@ -332,7 +332,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98298VBF9J;
-				GCC_PREFIX_HEADER = /Users/zrq/Desktop/MultiUpload/MultiUpload/MutiUpload.pch;
+				GCC_PREFIX_HEADER = /Users/zrq/Desktop/Github/MultiUpload/MultiUpload/MutiUpload.pch;
 				INFOPLIST_FILE = MultiUpload/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -353,7 +353,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98298VBF9J;
-				GCC_PREFIX_HEADER = /Users/zrq/Desktop/MultiUpload/MultiUpload/MutiUpload.pch;
+				GCC_PREFIX_HEADER = /Users/zrq/Desktop/Github/MultiUpload/MultiUpload/MutiUpload.pch;
 				INFOPLIST_FILE = MultiUpload/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

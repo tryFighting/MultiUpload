@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *tips;
 @property (nonatomic, strong) NSString *footerTips;
 @property (nonatomic, assign) BOOL isChange;
-- (void)reloadCollectionView:(NSMutableArray *)arr;
+- (void)reloadCollectionView:(NSMutableArray *)arr section:(NSInteger)section;
 
 @end
 
